@@ -32,18 +32,18 @@ git clone https://github.com/swoft-cloud/swoft.git  /home/SwoftTraceServer
 ```
 
 ```php
-	// 替换原有的$messages 变量的处理
-    if (\is_array($messages)) {
-        $socketMessage = json_encode($messages);
-        $messages = \implode($newline ? PHP_EOL : '', $messages);
-    }else{
-        $socketMessage = json_encode(['type'=>'command','message'=>\style()->stripColor((string)$messages)]);
-    }
-   // 在echo 换行之后 加入链接 websocket-client的代码
-    $client = new WebSocketClient('127.0.0.1',8001,'/sqls');
-    $client->connect();
-    $client->send(json_encode($record));
-    $client->getSocket()->close();
+ // 替换原有的$messages 变量的处理
+ if (\is_array($messages)) {
+     $socketMessage = json_encode($messages);
+     $messages = \implode($newline ? PHP_EOL : '', $messages);
+ }else{
+     $socketMessage = json_encode(['type'=>'command','message'=>\style()->stripColor((string)$messages)]);
+ }
+ // 在echo 换行之后 加入链接 websocket-client的代码
+ $client = new WebSocketClient('127.0.0.1',8001,'/sqls');
+ $client->connect();
+ $client->send(json_encode($record));
+ $client->getSocket()->close();
 ```
 
 ```shell
