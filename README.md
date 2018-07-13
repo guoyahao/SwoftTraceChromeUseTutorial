@@ -1,7 +1,7 @@
 Swoft Trace 使用教程
 ---------------------------------------
 
-![文件目录格式](file:///F:/SwoftTrace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/ls.png)
+![文件目录格式](https://raw.githubusercontent.com/guoyahao/SwoftTraceChromeUseTutorial/master/img/ls.png)
 
 
 1： 首先copy 一份最新的swoft 当做Trace server
