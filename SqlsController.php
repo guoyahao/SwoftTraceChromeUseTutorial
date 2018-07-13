@@ -69,7 +69,7 @@ class SqlsController implements HandlerInterface
 
         $client = $server->getClientInfo($frame->fd);
 
-        if ($client["remote_ip"]='127.0.0.1')
+        if ($client["remote_ip"]=='127.0.0.1')
         {
             $server->close($frame->fd);
         }
