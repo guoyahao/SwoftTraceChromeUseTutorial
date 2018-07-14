@@ -22,6 +22,9 @@ git clone https://github.com/swoft-cloud/swoft.git  /home/SwoftTraceServer
 2： 在实际开发的版本中 引入websocket-client库  
 
 ```shell
+    更新源
+    composer config repo.packagist composer https://packagist.laravel-china.org
+    
     引入包
     composer require swofttrace/websocket-client
     
