@@ -21,29 +21,27 @@ git clone https://github.com/swoft-cloud/swoft.git  /home/SwoftTraceServer
 
 2： 在实际开发的版本中 引入websocket-client库  
 
-	websocket-client 目前还有打包 需要自己配置一下 composer.json 引入一下包 
-    约定： websocket-client 放到 /home/swoft/vendor/swoft/websocket-client 目录下 
-
-
-
 ```shell
+    引入包
+    composer require swofttrace/websocket-client
+    
     开始修改代码 
     swoft\vendor\swoft\console\src\Output\Output.php   >>   public function writeln() 加入代码 
 ```
 
 ```php
- // 替换原有的$messages 变量的处理
- if (\is_array($messages)) {
-     $socketMessage = json_encode($messages);
-     $messages = \implode($newline ? PHP_EOL : '', $messages);
- }else{
-     $socketMessage = json_encode(['type'=>'command','message'=>\style()->stripColor((string)$messages)]);
- }
- // 在echo 换行之后 加入链接 websocket-client的代码
- $client = new WebSocketClient('127.0.0.1',8001,'/sqls');
- $client->connect();
- $client->send(json_encode($record));
- $client->getSocket()->close();
+// 替换原有的$messages 变量的处理
+if (\is_array($messages)) {
+   $socketMessage = json_encode($messages);
+   $messages = \implode($newline ? PHP_EOL : '', $messages);
+}else{
+   $socketMessage = json_encode(['type'=>'command','message'=>\style()->stripColor((string)$messages)]);
+}
+// 在echo 换行之后 加入链接 websocket-client的代码
+$client = new WebSocketClient('127.0.0.1',8001,'/sqls');
+$client->connect();
+$client->send(json_encode($record));
+$client->getSocket()->close();
 ```
 
 ```shell
@@ -51,10 +49,10 @@ swoft\vendor\swoft\framework\src\Log\Logger.php   >>   public function addRecord
 ```
 
  ```php
-    //在 foreach 函数之前加    
-    $client = new WebSocketClient('127.0.0.1',8001,'/sqls');
-    $client->connect();
-    $client->send(json_encode($record));
-    $client->getSocket()->close();
+ //在 foreach 函数之前加    
+ $client = new WebSocketClient('127.0.0.1',8001,'/sqls');
+ $client->connect();
+ $client->send(json_encode($record));
+ $client->getSocket()->close();
 ```
 	重点注意的是命名空间
